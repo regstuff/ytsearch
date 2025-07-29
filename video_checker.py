@@ -190,4 +190,5 @@ Title: """
         email_msg += f'View Count: {v["view_count"]}\n'
         email_msg += '-----------\n'
     if email_msg:
+	print('Emailing with:', email_msg)
         emailer_func(EMAIL_RECEIVER, email_msg, "AI Fake Video Check: Check if any of these videos are AI fakes", EMAIL_SENDER, 465, EMAIL_PASSWORD)
