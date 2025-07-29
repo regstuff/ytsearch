@@ -1,0 +1,33 @@
+name: Daily YouTube AI Check
+
+on:
+  schedule:
+    - cron: '30 4 * * *'   # 10:00 IST is 04:30 UTC
+  workflow_dispatch:        # allows manual triggering too
+
+jobs:
+  run-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run video checker script
+        env:
+          YT_QUERY: ${{ secrets.YT_QUERY }}
+          ORG_QUERY: ${{ secrets.ORG_QUERY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          AZURE_URL: ${{ secrets.AZURE_URL }}
+          AZURE_KEY: ${{ secrets.AZURE_KEY }}
+          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python video_checker.py
