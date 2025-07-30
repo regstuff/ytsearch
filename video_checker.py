@@ -122,7 +122,7 @@ def emailer_func(receiverlist, message, subj, senderid, port, mailpassword):
 if __name__ == "__main__":
     # These must all be set in your github secrets/environment 
     search_query = os.environ["YT_QUERY"]
-	org_query = os.environ["ORG_QUERY"] 
+    org_query = os.environ["ORG_QUERY"] 
     API_KEY = os.environ["YOUTUBE_API_KEY"]
     MIN_VIEW_COUNT = int(os.environ.get("YT_MIN_VIEW_COUNT", "500"))
     EMAIL_RECEIVER = os.environ["EMAIL_RECEIVER"]
